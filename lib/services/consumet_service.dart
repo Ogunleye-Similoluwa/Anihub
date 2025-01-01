@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ConsumetService {
-  final String baseUrl = 'http://localhost:3000';
+  final String baseUrl = 'https://anihub-backend.vercel.app';
 
   Future<List<dynamic>> searchAnime(String query) async {
     try {

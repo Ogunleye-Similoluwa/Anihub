@@ -107,7 +107,7 @@ AniHub is a feature-rich Flutter application that provides a seamless experience
    - Performance monitoring
    - User authentication (planned)
 
-## 📦 Dependencies
+
 
 ## 🚀 Getting Started
 
@@ -118,56 +118,7 @@ AniHub is a feature-rich Flutter application that provides a seamless experience
 - Git
 - Node.js (for Consumet API)
 
-### Installation Steps
 
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/yourusername/anihub.git
-   cd anihub
-   ```
-
-2. **Install Flutter Dependencies**
-   ```bash
-   flutter pub get
-   ```
-
-3. **Configure Firebase**
-   ```bash
-   # Install Firebase CLI
-   npm install -g firebase-tools
-   
-   # Login to Firebase
-   firebase login
-   
-   # Initialize Firebase
-   firebase init
-   ```
-
-4. **Set Up Consumet API**
-   ```bash
-   # Clone Consumet API
-   git clone https://github.com/consumet/api.consumet.org.git
-   
-   # Install dependencies
-   cd api.consumet.org
-   npm install
-   
-   # Start server
-   npm start
-   ```
-
-5. **Configure Environment Variables**
-   ```bash
-   cp .env.example .env
-   # Edit .env with your configuration
-   ```
-
-6. **Run the App**
-   ```bash
-   flutter run
-   ```
-
-## 📁 Project Structure
 
 ## 📈 Performance Optimization
 
@@ -185,18 +136,13 @@ AniHub is a feature-rich Flutter application that provides a seamless experience
 - Input validation
 - Error handling
 
-## 🤝 Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🐛 Known Issues
 
-- [Issue #1] - Description
-- [Issue #2] - Description
 
 ## 🗺️ Roadmap
 
