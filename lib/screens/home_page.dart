@@ -27,7 +27,9 @@ class _HomePageState extends State<HomePage>
   void initState() {
     super.initState();
     _selectRandomGenres();
-    _loadGenresSequentially();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _loadGenresSequentially();
+    });
   }
 
   void _selectRandomGenres() {
@@ -38,14 +40,19 @@ class _HomePageState extends State<HomePage>
   }
 
   Future<void> _loadGenresSequentially() async {
+    if (!mounted) return;
+    
+    setState(() {
+      _isLoadingGenres = true;
+    });
+
     final searchProvider = Provider.of<SearchProvider>(context, listen: false);
     
     try {
-     
       await Provider.of<BannerProvider>(context, listen: false).getBannerAnime();
       for (String genre in _selectedGenres) {
-        await searchProvider.searchByGenre(genre, limit: 7, 
-                          shuffle: true,refresh: true);
+        if (!mounted) return;
+        await searchProvider.searchByGenre(genre, limit: 7, shuffle: true, refresh: true);
         await Future.delayed(const Duration(milliseconds: 500));
       }
     } catch (e) {
@@ -182,7 +189,7 @@ class _HomePageState extends State<HomePage>
                                     'id': banner.malId,
                                     'type': ResultType.banner.index
                                   })),
-                              icon: const Icon(Icons.play_arrow),
+                              icon: const Icon(Icons.play_arrow, color: Colors.white,),
                               label: const Text("Watch Now"))
                         ],
                       ),

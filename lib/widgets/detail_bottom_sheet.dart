@@ -7,13 +7,36 @@ import 'package:anihub/models/anime.dart';
 import 'package:anihub/providers/wishlistprovider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:hive/hive.dart';
 
-class DetailBottomSheet extends StatelessWidget {
+class DetailBottomSheet extends StatefulWidget {
   final Anime anime;
   final ResultType resulttype;
   const DetailBottomSheet(
       {Key? key, required this.anime, required this.resulttype})
       : super(key: key);
+
+  @override
+  _DetailBottomSheetState createState() => _DetailBottomSheetState();
+}
+
+class _DetailBottomSheetState extends State<DetailBottomSheet> {
+  @override
+  void initState() {
+    super.initState();
+    _initializeHive();
+  }
+
+  Future<void> _initializeHive() async {
+    try {
+      // Initialize Hive box if not already initialized
+      if (!Hive.isBoxOpen('wishlist')) {
+        await Hive.openBox('wishlist');
+      }
+    } catch (e) {
+      print('Error initializing Hive: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +68,7 @@ class DetailBottomSheet extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           image: DecorationImage(
-                              image: NetworkImage(anime.imageUrl),
+                              image: NetworkImage(widget.anime.imageUrl),
                               fit: BoxFit.cover)),
                     ),
                     Padding(
@@ -59,7 +82,7 @@ class DetailBottomSheet extends StatelessWidget {
                             constraints:
                                 BoxConstraints(maxWidth: size.width * 0.4),
                             child: Text(
-                              anime.title,
+                              widget.anime.title,
                               maxLines: 4,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyles.primaryTitle,
@@ -69,14 +92,14 @@ class DetailBottomSheet extends StatelessWidget {
                             height: 8,
                           ),
                           Text(
-                            anime.year.toString(),
+                            widget.anime.year.toString(),
                             style: TextStyles.secondaryTitle,
                           ),
                           const SizedBox(
                             height: 8,
                           ),
                           Text(
-                            "Score : ${anime.score}",
+                            "Score : ${widget.anime.score}",
                           ),
                         ],
                       ),
@@ -107,13 +130,13 @@ class DetailBottomSheet extends StatelessWidget {
                                   ))),
                           onPressed: () async {
                             try {
-                              if (wishlistProvider.isInWishlist(anime.malId)) {
-                                await wishlistProvider.removeFromWishlist(anime.malId);
+                              if (wishlistProvider.isInWishlist(widget.anime.malId)) {
+                                await wishlistProvider.removeFromWishlist(widget.anime.malId);
                                 if (context.mounted) {
                                   showCustomSnackBar(context, "Removed from wishlist!");
                                 }
                               } else {
-                                await wishlistProvider.addToWishlist(anime);
+                                await wishlistProvider.addToWishlist(widget.anime);
                                 if (context.mounted) {
                                   showCustomSnackBar(context, "Added to wishlist!");
                                 }
@@ -125,13 +148,14 @@ class DetailBottomSheet extends StatelessWidget {
                             }
                           },
                           icon: Icon(
-                            wishlistProvider.isInWishlist(anime.malId)
+                            wishlistProvider.isInWishlist(widget.anime.malId)
                                 ? Icons.remove_circle_outline
                                 : Icons.add,
                             size: 30,
+                            color: Colors.red,
                           ),
                           label: Text(
-                            wishlistProvider.isInWishlist(anime.malId)
+                            wishlistProvider.isInWishlist(widget.anime.malId)
                                 ? "Remove"
                                 : "Add to Wishlist",
                           )),
@@ -153,11 +177,11 @@ class DetailBottomSheet extends StatelessWidget {
                             Navigator.pop(context);
                             Navigator.pushNamed(context, '/detailscreen',
                                 arguments: json.encode({
-                                  'id': anime.malId,
-                                  'type': resulttype.index,
+                                  'id': widget.anime.malId,
+                                  'type': widget.resulttype.index,
                                 }));
                           },
-                          icon: const Icon(Icons.play_arrow, size: 30),
+                          icon: const Icon(Icons.play_arrow, size: 30, color: Colors.white,),
                           label: const Text("Watch Now")),
                     ),
                   )

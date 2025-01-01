@@ -39,7 +39,9 @@ class _SearchScreenState extends State<SearchScreen> {
                 child: TextFormField(
                     controller: _searchController,
                     obscureText: false,
+                    cursorColor: Colors.red,
                     decoration: InputDecoration(
+                      
                       suffixIcon: IconButton(
                           onPressed: () {
                             _searchController.clear();
