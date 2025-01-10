@@ -7,8 +7,8 @@ import 'dart:convert';
 
 class MangaProvider with ChangeNotifier {
   List<Manga> _popularManga = [];
-  List<Manga> _readingManga = [];
-  List<Manga> _completedManga = [];
+  final List<Manga> _readingManga = [];
+  final List<Manga> _completedManga = [];
   List<Manga> _searchResults = [];
   bool _isLoading = false;
   bool _hasNextPage = true;
@@ -19,7 +19,7 @@ class MangaProvider with ChangeNotifier {
   List <dynamic>? _selectedMangaChapters;
   List<dynamic>? _currentChapters;
   String? _selectedMangaId;
-  Map<String, String> _chapterFirstPages = {};
+  final Map<String, String> _chapterFirstPages = {};
   int? _currentChapterIndex;
   
   bool get isLoading => _isLoading;
@@ -337,7 +337,7 @@ class MangaProvider with ChangeNotifier {
   }
 
 
-  final String mangaBaseUrl = 'http://localhost:3000';
+  final String mangaBaseUrl = 'https://anihub-backend.vercel.app';
 
 
   Future<void> searchMangaInfo(String query) async {
@@ -401,7 +401,6 @@ class MangaProvider with ChangeNotifier {
           _chapterFirstPages[chapterId] = images[0]['img'];
         }
          return images.map((json) => ChapterPage.fromJson(json)).toList();
-;
       }
       throw Exception('Failed to get manga chapters');
     } catch (e) {

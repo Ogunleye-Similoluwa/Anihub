@@ -55,9 +55,9 @@ class _TabScreenState extends State<TabScreen> {
         ),
       ),
       body: PageView(
-        children: _pages,
         controller: pageController,
         physics: const NeverScrollableScrollPhysics(),
+        children: _pages,
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _currentIndex,

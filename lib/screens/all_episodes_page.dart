@@ -110,10 +110,10 @@ class _AllEpisodesPageState extends State<AllEpisodesPage> {
                         Text(provider.error!),
                         ElevatedButton(
                           onPressed: _initializeEpisodes,
-                          child: const Text('Retry'),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.red,
                           ),
+                          child: const Text('Retry'),
                         ),
                       ],
                     ),

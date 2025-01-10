@@ -144,6 +144,7 @@ class _VideoScreenState extends State<VideoScreen> {
           Positioned(
             left: 0,
             right: 0,
+            bottom: 20,
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -176,7 +177,6 @@ class _VideoScreenState extends State<VideoScreen> {
                     "${_controller.value.duration.inMinutes.remainder(60)}:${(_controller.value.duration.inSeconds.remainder(60))}"),
               ],
             ),
-            bottom: 20,
           ),
         if (!hideTools)
           Positioned(

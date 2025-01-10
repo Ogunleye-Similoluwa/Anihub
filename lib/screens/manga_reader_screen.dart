@@ -237,7 +237,7 @@ class _MangaReaderScreenState extends State<MangaReaderScreen> {
                                    if (chapters != null && currentIndex != null) {
                                   navigateToChapter(
                                     previousChapterId,
-                                    chapters[currentIndex - 1]['title'] ?? 'Chapter ${currentIndex}',
+                                    chapters[currentIndex - 1]['title'] ?? 'Chapter $currentIndex',
                                   );
                                 }
 

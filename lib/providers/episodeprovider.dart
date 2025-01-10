@@ -1,7 +1,5 @@
-import 'dart:convert';
 import 'package:anihub/models/episode.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:anihub/services/consumet_service.dart';
 
 class EpisodeProvider with ChangeNotifier {

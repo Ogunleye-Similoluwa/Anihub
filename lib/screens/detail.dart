@@ -1099,7 +1099,7 @@ class _DetailScreenState extends State<DetailScreen> with RouteAware {
       final consumetService = ConsumetService();
       
       // Step 1: Search for anime
-      final searchResults = await consumetService.searchAnime(anime!.title);
+      final searchResults = await consumetService.searchAnime(anime.title);
     
     print("Here is the search results");
     print(searchResults);

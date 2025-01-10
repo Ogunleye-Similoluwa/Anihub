@@ -23,6 +23,7 @@ class _TabScreenState extends State<TabScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(kToolbarHeight),
             child: Container(
               padding: const EdgeInsets.only(right: 12, left: 12, top: 25),
               alignment: Alignment.center,
@@ -44,12 +45,11 @@ class _TabScreenState extends State<TabScreen> {
                       ))
                 ],
               ),
-            ),
-            preferredSize: const Size.fromHeight(kToolbarHeight)),
+            )),
         body: PageView(
-          children: _pages,
           controller: pageController,
           physics: const NeverScrollableScrollPhysics(),
+          children: _pages,
         ),
         bottomNavigationBar: BottomNavigationBar(
           onTap: (val) {
