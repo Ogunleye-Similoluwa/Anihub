@@ -1,8 +1,9 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ConsumetService {
-  final String baseUrl = 'https://anihub-backend.vercel.app';
+  final String baseUrl = dotenv.env['BASE_URL'] ?? 'https://anihub-backend.vercel.app';
 
   Future<List<dynamic>> searchAnime(String query) async {
     try {
